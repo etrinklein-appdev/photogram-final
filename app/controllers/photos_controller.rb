@@ -14,6 +14,8 @@ class PhotosController < ApplicationController
 
     @the_photo = matching_photos.at(0)
 
+    @matching_likes = @the_photo.likes.all
+
     render({ :template => "photos/show.html.erb" })
   end
 
