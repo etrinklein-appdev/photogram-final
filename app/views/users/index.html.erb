@@ -50,7 +50,7 @@
     <td>
       <%if @current_user != nil && a_user.private == false %>
       <a href="/users/<%=a_user.username%>">Show details</a>
-      <%elsif a_user.followrequests.where(:sender_id => @current_user.id).at(0) != nil && a_user.followrequests.where(:sender_id => @current_user.id).at(0).status == "accepted" %>
+      <%elsif @current_user != nil && a_user.followrequests.where(:sender_id => @current_user.id).at(0) != nil && a_user.followrequests.where(:sender_id => @current_user.id).at(0).status == "accepted" %>
       <a href="/users/<%=a_user.username%>">Show details</a>
       <% else %>
       <a href="/users">Show details</a>
