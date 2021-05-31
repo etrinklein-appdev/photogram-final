@@ -29,6 +29,7 @@
     </td>
 
     <td>
+
       <%if @current_user != nil %>
         <form action="/insert_follow_request" method="post">
          <input type="hidden" name="query_recipient_id" value=<%= a_user.id %> >
@@ -39,7 +40,6 @@
           <% else %>
             <input type="hidden" name="query_status" value="accepted" >
           <% end %>
-
           <button>
             Follow
           </button>
@@ -48,7 +48,13 @@
     </td>
 
     <td>
+      <%if @current_user != nil && a_user.private == false %>
       <a href="/users/<%=a_user.username%>">Show details</a>
+      <%elsif a_user.followrequests.where(:sender_id => @current_user.id).at(0) != nil && a_user.followrequests.where(:sender_id => @current_user.id).at(0).status == "accepted" %>
+      <a href="/users/<%=a_user.username%>">Show details</a>
+      <% else %>
+      <a href="/users">Show details</a>
+      <% end%>
     </td>
   </tr>
   <% end %>

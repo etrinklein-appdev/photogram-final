@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def index
     all_users = User.all
     @list_of_users = all_users.order({ :username => :asc })
+
+
     render({ :template => "users/index.html.erb" })
   end
 
