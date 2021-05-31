@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  #basic pages
+
+  get("/users", {:controller => "users", :action=> "index"})
+
+
+
   # Routes for the Like resource:
 
   # CREATE
