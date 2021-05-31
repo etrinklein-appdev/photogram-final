@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   #basic pages
 
+  get("/", {:controller => "users", :action=> "index"})
+
   get("/users", {:controller => "users", :action=> "index"})
 
   get("/users/:username", {:controller=> "users", :action => "details"})
