@@ -59,6 +59,7 @@
       </tr>
 
       <% @list_of_photos.each do |a_photo| %>
+      <% if a_photo.owner.private == false %>
       <tr>
         
        <td>
@@ -88,6 +89,7 @@
           </a>
         </td>
       </tr>
+      <% end %>
       <% end %>
     </table>
   </div>
