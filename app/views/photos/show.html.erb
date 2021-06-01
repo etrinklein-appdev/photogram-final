@@ -52,12 +52,20 @@
       <% end %>
 
       <dt>Add a fan</dt>
+
+      <% if @the_photo.likes.where(:fan_id => @current_user.id).at(0) == nil %>      
       <dd>
         <form action="/insert_like" method="post">
           <input type="hidden" value=<%=@the_photo.id%> name="query_photo_id">
           <button>Like</button>
         </form>
       </dd>
+
+      <% else %>
+      <dd>
+        <a href="/delete_like/<%= @the_photo.likes.where(:fan_id => @current_user.id).at(0).id %>">Unlike photo</a>
+      </dd>
+      <% end %>
 
       <% if @the_photo.owner_id == @current_user.id %>
       <dt>
