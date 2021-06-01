@@ -12,6 +12,10 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
+
+  mount_uploader :image, ImageUploader
+
+
   has_many(:comments, { :class_name => "Comment", :foreign_key => "photo_id", :dependent => :destroy })
   has_many(:likes, { :class_name => "Like", :foreign_key => "photo_id", :dependent => :destroy })
   belongs_to(:owner, { :required => false, :class_name => "User", :foreign_key => "owner_id" })

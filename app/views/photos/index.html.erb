@@ -11,11 +11,9 @@
   <div>
     <form action="/insert_photo" method="post">
 
-      <label for="image_box">
-          Image
-        </label>
+      <label for="image_box">Image</label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="file" id="image_box" name="query_image" class="form-control" enctype="multipart/form-data">
 
         <label for="caption_box">
           Caption
