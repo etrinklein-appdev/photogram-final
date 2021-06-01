@@ -34,4 +34,18 @@ class UsersController < ApplicationController
 
   end
 
+  def feed
+
+    username = params.fetch("username")
+
+    matching_users = User.where({ :username => username })
+
+    @the_user = matching_users.at(0)
+
+    @following = @the_user.followrequests.where(:status => "accepted")
+
+    render({ :template => "users/feed.html.erb" })
+
+  end
+
 end

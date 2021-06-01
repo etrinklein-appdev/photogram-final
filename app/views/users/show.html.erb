@@ -20,13 +20,13 @@
 <nav>
   <ul>
     <li>
-      <a href="/users/<%@the_user.username%>">Profile</a>
+      <a href="/users/<%=@the_user.username%>">Profile</a>
     </li>
     <li>
-       <a href="/users/<%@the_user.username%>/liked_photos">Liked Photos</a>
+       <a href="/users/<%=@the_user.username%>/liked_photos">Liked Photos</a>
     </li>
     <li>
-      <a>Feed</a>
+      <a href="/users/<%=@the_user.username%>/feed">Feed</a>
     </li>
     <li>
       <a>Discover</a>

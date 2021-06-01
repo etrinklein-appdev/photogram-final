@@ -35,7 +35,7 @@
 </nav>
 
 
-<h2>Liked photos (<%=@liked_photos.count%>)</h2>
+<h2>Feed </h2>
 
 <table border="1">
   <tr>
@@ -62,33 +62,37 @@
     <th></th>
   </tr>
 
-  <% @liked_photos.each do |a_like| %>
-  <tr>
-    <td>
-      <img src= a_like.photo.image>
-    </td>
+  <% @following.each do |a_user| %>
 
-    <td>
-      <%= a_like.photo.owner.username%>
-    </td>
+    <% a_user.recipient.photos.each do |a_photo| %>
 
-    <td>
-      <%= a_like.photo.caption %>
-    </td>
+    <tr>
+      <td>
+        <img src= a_photo.image>
+      </td>
 
-    <td>
-      <%= time_ago_in_words(a_like.photo.created_at) %> ago
-    </td>
+      <td>
+        <%= a_photo.owner.username%>
+      </td>
 
-    <td>
-      <%= a_like.photo.likes.count %>
-    </td>
+      <td>
+        <%= a_photo.caption %>
+      </td>
 
-    <td>
-      <a href="/photos/<%=a_like.photo_id%>">
-        Show details
-      </a>
-    </td>
+      <td>
+        <%= time_ago_in_words(a_photo.created_at) %> ago
+      </td>
+
+      <td>
+        <%= a_photo.likes.count %>
+      </td>
+
+      <td>
+        <a href="/photos/<%=a_photo.id%>">
+          Show details
+        </a>
+      </td>
+      <% end %>
     <% end %>
 
   </table>
