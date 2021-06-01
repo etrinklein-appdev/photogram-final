@@ -48,4 +48,18 @@ class UsersController < ApplicationController
 
   end
 
+    def discover
+
+    username = params.fetch("username")
+
+    matching_users = User.where({ :username => username })
+
+    @the_user = matching_users.at(0)
+
+    @following = @the_user.followrequests.where(:status => "accepted")
+
+    render({ :template => "users/discover.html.erb" })
+
+  end
+
 end
