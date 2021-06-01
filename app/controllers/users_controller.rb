@@ -20,4 +20,18 @@ class UsersController < ApplicationController
 
   end
 
+  def liked_photos
+
+    username = params.fetch("username")
+
+    matching_users = User.where({ :username => username })
+
+    @the_user = matching_users.at(0)
+
+    @liked_photos =  @the_user.likes.all
+
+    render({ :template => "users/liked_photos.html.erb" })
+
+  end
+
 end
