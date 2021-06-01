@@ -36,18 +36,20 @@
         Likes count
       </dt>
       <dd>
-        <%= @the_photo.likes_count %>
+        <%= @the_photo.likes.count %>
       </dd>
       
       <dt>
         Comments count
       </dt>
       <dd>
-        <%= @the_photo.comments_count %>
+        <%= @the_photo.comments.count %>
       </dd>
 
       <dt>Fans</dt>
+      <% if @the_photo.likes.count >0 %>
       <dd><%= @matching_likes.first.fan.username %></dd>
+      <% end %>
 
       <dt>Add a fan</dt>
       <dd>Like</dd>
