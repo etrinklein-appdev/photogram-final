@@ -7,6 +7,32 @@
   <dt>Followers</dt>
   <dd><%=@the_user.followers.count%></dd>
 
+  <%if @current_user.id != @the_user.id && @the_user.followers.where(:sender_id => @current_user.id) != nil %> 
+    <form action="/delete_follow_request/<%=@the_user.followers.where(:sender_id => @current_user.id).at(0).id%>" method="post">
+    <input type="hidden" name="path_id value="<%=@the_user.followers.where(:sender_id => @current_user.id).at(0).id%>">
+
+    <button>
+      Unfollow
+    </button>
+    </form> 
+
+  <% elsif  @current_user.id != @the_user.id %>
+    <form action="/insert_follow_request" method="post">
+      <input type="hidden" name="query_recipient_id" value=<%= a_user.id %> >
+      <input type="hidden" name="query_sender_id" value=<%= @current_user.id %> >
+
+      <% if a_user.private %>
+        <input type="hidden" name="query_status" value="pending" >
+      <% else %>
+        <input type="hidden" name="query_status" value="accepted" >
+      <% end %>
+      <button>
+        Follow
+      </button>
+    </form>    
+    
+  <% end%>
+
   <div>
     <% if @the_user.followers.where(:recipient_id => @current_user.id).at(0) != nil %>
     <dd><a href="/delete_follow_request/<%@the_user.followers.where(:recipient_id => @current_user.id).at(0).id%>">Unfollow</a></dd>
